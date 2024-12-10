@@ -1,7 +1,7 @@
 // import express
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require('cors')
+const cors = require("cors");
 
 // create the express app
 const app = express();
@@ -9,7 +9,7 @@ const app = express();
 // middleware to handle JSON request
 app.use(express.json());
 
-// setup crops policies
+// setup cors policy
 app.use(cors());
 
 // connect to MongoDB
@@ -31,9 +31,11 @@ app.get("/", (req, res) => {
 // import all the routes
 const movieRouter = require("./routes/movie");
 const tvshowRouter = require("./routes/tvshow");
+const genreRouter = require("./routes/genre");
 
 app.use("/movies", movieRouter);
-app.use("/shows", tvshowRouter);
+app.use("/tvshows", tvshowRouter);
+app.use("/genres", genreRouter);
 
 // start the server
 app.listen(5555, () => {
